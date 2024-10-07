@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
+import nltk
 
 #Create Flask API
 app = Flask(__name__)
@@ -26,6 +27,7 @@ bert_model.eval()  #Its a must to set the model to evaluation mode
 
 label_map = {0: 'business', 1: 'entertainment', 2: 'politics', 3: 'sport', 4: 'tech'} #I define a label mapping 
 
+nltk.download('stopwords')
 stop_words = set(stopwords.words('english')) #If using Logistic Regression, I need to load stopwords for preprocessing
 
 def preprocess_text(text): #As before, here its the preprocessing function
